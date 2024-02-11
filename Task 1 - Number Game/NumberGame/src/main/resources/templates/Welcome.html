@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0; /* Change the background color here */
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<form action="UserLogin" method="post">
+    <label>
+        <input type="text" name="username" placeholder="Enter username" required>
+    </label>
+    <input type="submit" value="Enter =>" style="font-size: 20px; font-weight: bold">
+</form>
+
+
+<script>
+    // JavaScript to change body background color and paragraph tag color every second
+    setInterval(function() {
+        var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+        document.body.style.backgroundColor = randomColor; // Set body background color
+
+        var paragraphs = document.getElementsByTagName('p'); // Get all paragraph tags
+        for (var i = 0; i < paragraphs.length; i++) {
+            var paragraph = paragraphs[i];
+            if (i === 0) {
+                paragraph.style.color = '#ffffff'; // Set the color of the first paragraph to white
+            } else {
+                var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+                paragraph.style.color = randomColor; // Set paragraph color
+            }
+        }
+    }, 1000); // Repeat every 1 second
+</script>
+
+
+</body>
+</html>

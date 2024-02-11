@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Beginner</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        form {
+            width: 300px; /* Adjust the width as needed */
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: calc(100%); /* Adjust the width as needed */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
+            text-align: center;
+        }
+
+        input[type="text"]{
+            background-color: transparent;
+            border-color: transparent;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+<input type="text" th:value="${numberCheckingMessage}" th:style="${greenColor}" disabled>
+<form method="post">
+    <input type="text" value="Guess the number!" disabled>
+    <input type="text" th:value="${RemainingChances}" disabled>
+    <input type="number" name="numberInput" required>
+    <input type="submit" value="Check Number" formaction="checkNumberBeginner">
+</form>
+<script>
+    // JavaScript to change body background color and paragraph tag color every second
+    setInterval(function() {
+        var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+        document.body.style.backgroundColor = randomColor; // Set body background color
+
+        var paragraphs = document.getElementsByTagName('p'); // Get all paragraph tags
+        for (var i = 0; i < paragraphs.length; i++) {
+            var paragraph = paragraphs[i];
+            if (i === 0) {
+                paragraph.style.color = '#ffffff'; // Set the color of the first paragraph to white
+            } else {
+                var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+                paragraph.style.color = randomColor; // Set paragraph color
+            }
+        }
+    }, 1000); // Repeat every 1 second
+</script>
+</body>
+</html>

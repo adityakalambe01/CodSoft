@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Levels</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            transition: background-color 1s ease; /* Smooth transition effect */
+        }
+
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+            font-size: 20px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-size: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            transition: color 1s ease; /* Smooth transition effect for color change */
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Transition effect */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* New background color on hover */
+        }
+
+        tr:hover {
+            background-color: #f2f2f2; /* Background color on hover */
+        }
+    </style>
+</head>
+<body>
+<form method="post">
+    <table style="background-color: transparent">
+        <p th:text="${WelcomeMessage}" style="font-weight: bold; font-size: 25px;"></p>
+        <thead>
+        <tr>
+            <th>Level Name</th>
+            <th>Chances</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gameMode, status : ${gameModes}">
+            <td th:text="${gameMode.gameLevelName}"></td>
+            <td th:text="${gameMode.gameLevelChances}"></td>
+            <td style="text-align: right;">
+                <input type="submit" value="Play Level" th:formaction="${gameMode.accessLink}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<script>
+    // JavaScript to change body background color and paragraph tag color every second
+    setInterval(function() {
+        var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+        document.body.style.backgroundColor = randomColor; // Set body background color
+
+        var paragraphs = document.getElementsByTagName('p'); // Get all paragraph tags
+        for (var i = 0; i < paragraphs.length; i++) {
+            var paragraph = paragraphs[i];
+            if (i === 0) {
+                paragraph.style.color = '#ffffff'; // Set the color of the first paragraph to white
+            } else {
+                var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+                paragraph.style.color = randomColor; // Set paragraph color
+            }
+        }
+    }, 1000); // Repeat every 1 second
+</script>
+
+
+</body>
+</html>
