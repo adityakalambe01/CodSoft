@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light gray background color */
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Side navigation styles */
+        .sidenav {
+            width: 200px;
+            background-color: #343a40; /* Dark gray background color */
+            color: #fff; /* White text color */
+            padding-top: 20px;
+            position: fixed; /* Make side navigation fixed */
+            top: 0; /* Position at the top */
+            bottom: 0; /* Fill the height of the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            background-color: #555; /* Darker background color on hover */
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding-left: 200px; /* Add padding to account for side navigation */
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        /* Header styles */
+        header {
+            background-color: #007bff; /* Blue header background color */
+            color: #fff; /* White text color */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Position for search bar */
+        }
+
+        /* Search bar styles */
+        .search-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .search-input {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .search-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #28a745; /* Green color for search button */
+            color: #fff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: #218838; /* Darker green color on hover */
+        }
+
+        /* Form container styles */
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input field styles */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-new-dept {
+            background-color: #ffc107; /* Yellow color for new department button */
+            color: #000; /* Black text color */
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <br>
+    <br>
+    <a href="adminDashboard">
+        Admin Panel
+        <br>
+        <br>
+        <br>
+    </a>
+
+    <a href="allDepartments">Department</a>
+
+    <a href="allCourses">Course</a>
+
+    <!--<a href="allSemester">Semester</a>
+
+    <a href="allUser" th:style="${currentOpenedTab}">Users</a>-->
+
+    <a href="allStudents">Students</a>
+
+    <a href="allRegistration">Registration</a>
+
+    <a href="logout">Logout</a>
+
+    <!-- Add other navigation links here -->
+
+</div>
+
+<div class="main-content">
+    <header>
+        <h1>Admin Panel</h1>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search..." name="departmentName">
+            <input class="search-btn" type="submit" value="Search" formaction="departmentByName">
+        </div>
+    </header>
+
+    <div class="form-container">
+        <form method="post">
+            <div class="input-group">
+                <label for="departmentName">Department Name:</label>
+                <input type="text" id="departmentName" name="departmentName" required>
+            </div>
+
+            <div class="input-group">
+                <label for="departmentHeadFullName">Department Head Full Name:</label>
+                <input type="text" id="departmentHeadFullName" name="departmentHeadFullName" required>
+            </div>
+
+            <input class="btn btn-new-dept" type="submit" value="Add Department" formaction="addDepartment">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light gray background color */
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Side navigation styles */
+        .sidenav {
+            width: 200px;
+            background-color: #343a40; /* Dark gray background color */
+            color: #fff; /* White text color */
+            padding-top: 20px;
+            position: fixed; /* Make side navigation fixed */
+            top: 0; /* Position at the top */
+            bottom: 0; /* Fill the height of the viewport */
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            background-color: #555; /* Darker background color on hover */
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+
+            padding-left: 200px; /* Add padding to account for side navigation */
+            overflow-x: auto; /* Allow horizontal scrolling */
+        }
+
+        /* Header styles */
+        header {
+            background-color: #007bff; /* Blue header background color */
+            color: #fff; /* White text color */
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Position for search bar */
+        }
+
+        /* Search bar styles */
+        .search-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .search-input {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #28a745; /* Green color for search button */
+            color: #fff; /* White text color */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: #218838; /* Darker green color on hover */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Fix table layout */
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Display ellipsis for overflow text */
+        }
+
+        th {
+            background-color: #007bff; /* Blue header background color */
+            color: #fff; /* White text color */
+            position: sticky; /* Make table header sticky */
+            top: 0; /* Position at the top */
+            z-index: 1; /* Ensure table header stays above other content */
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-view {
+            background-color: #28a745; /* Green color for view button */
+            color: #fff; /* White text color */
+        }
+
+        .btn-delete {
+            background-color: #dc3545; /* Red color for delete button */
+            color: #fff; /* White text color */
+        }
+
+        .btn-new-dept {
+            background-color: #ffc107; /* Yellow color for new department button */
+            color: #000; /* Black text color */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .btn:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <br>
+    <br>
+    <a href="adminDashboard">
+        Admin Panel
+        <br>
+        <br>
+        <br>
+    </a>
+
+    <a href="allDepartments">Department</a>
+
+    <a href="allCourses">Course</a>
+
+<!--    <a href="allSemester">Semester</a>-->
+
+<!--    <a href="allUser">Users</a>-->
+
+    <a href="allStudents" th:style="${currentOpenedTab}">Students</a>
+
+    <a href="allRegistration">Registration</a>
+
+    <a href="logout">Logout</a>
+
+    <!-- Add other navigation links here -->
+
+</div>
+
+<div class="main-content">
+    <header>
+        <h1>Admin Panel</h1>
+        <div class="search-container">
+            <form>
+                <input type="text" class="search-input" placeholder="Search Department..." name="departmentName">
+                <input class="search-btn" type="submit" value="Search" formaction="departmentByName">
+            </form>
+        </div>
+    </header>
+
+    <table>
+        <thead>
+        <tr style="text-align: left">
+            <th>No.</th>
+            <th>Name</th>
+            <th>Email Id</th>
+            <th>Mobile Number</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student, studIndex : ${allStudents}" style="height: 100px;">
+            <td th:text="${studIndex.count}"></td>
+            <td th:text="${student.studentFullName}"></td>
+            <td th:text="${student.studentEmailId}"></td>
+            <td th:text="${student.studentMobileNumber}"></td>
+            <td th:text="${student.studentAddress}" ></td>
+            <td th:text="${student.studentDateOfBirth}"></td>
+            <td th:text="${student.studentGender}"></td>
+            <td>
+                <form>
+                    <input type="hidden" name="studentSerialNumber" th:value="${student.studentSerialNumber}">
+
+                    <button class="btn btn-view" type="submit" formaction="viewCurrentStudent" title="View Student">
+                        <i class="fas fa-eye"></i>
+                    </button>
+
+                    <button class="btn btn-delete" type="submit" formaction="deleteStudent" title="Delete Student">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <form>
+        <button class="btn btn-new-dept" type="submit" formaction="addStudentPage">
+            <i class="fas fa-plus"></i>
+        </button>
+    </form>
+
+
+</div>
+
+
+
+</body>
+</html>
+

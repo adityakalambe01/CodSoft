@@ -1,0 +1,71 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    background-color: #007bff; /* Blue header background color */
+    color: #fff; /* White text color */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1{
+    width: 100%;
+    text-align: center;
+}
+
+/* Main styles */
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main h2 {
+    margin-bottom: 20px;
+    color: #007bff; /* Blue header color */
+}
+
+main p {
+    margin-bottom: 40px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #343a40; /* Dark gray footer background color */
+    color: #fff; /* White text color */
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Login button styles */
+.login-button {
+    background-color: #28a745; /* Green color for login button */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #218838; /* Darker green color on hover */
+}

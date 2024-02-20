@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Login</title>
+    <style>
+        /* Centering the form on the screen */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensure full viewport height */
+            margin: 0; /* Remove default body margin */
+            background-color: #f0f0f0; /* Set background color */
+        }
+
+        /* Styling for the form container */
+        .login-form {
+            width: 300px; /* Adjust width as needed */
+            padding: 20px;
+            background-color: #ffffff; /* Set background color */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
+
+        /* Styling for input fields */
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Styling for submit buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Align buttons with space between */
+        }
+
+        input[type="submit"] {
+            flex: 1; /* Distribute available space evenly between buttons */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: background-color 0.3s; /* Smooth transition effect for background color */
+        }
+
+        /* Styling for individual buttons */
+        .login-button {
+            background-color: #007bff; /* Blue color for login button */
+            color: #fff; /* White text color */
+        }
+
+        .signup-button {
+            background-color: #28a745; /* Green color for signup button */
+            color: #fff; /* White text color */
+        }
+
+        /* Hover effect for buttons */
+        input[type="submit"]:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+
+        /* Styling for error messages */
+        p.error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px; /* Adjust as needed */
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="login-form">
+    <form>
+        <label>
+            <input type="email" name="emailId" th:style="${invalidEmailIdStyle}" placeholder="Enter your email" required>
+        </label>
+        <p class="error-message" th:text="${invalidEmailId}"></p>
+        <label>
+            <input type="password" name="password" th:style="${invalidPasswordStyle}" placeholder="Enter password" required>
+        </label>
+        <p class="error-message" th:text="${invalidPassword}"></p>
+        <div class="button-container">
+            <input class="login-button" type="submit" value="Login" formaction="login" formmethod="post">
+<!--            <input class="signup-button" type="submit" value="Sign Up" formaction="signupPage" formmethod="get">-->
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+

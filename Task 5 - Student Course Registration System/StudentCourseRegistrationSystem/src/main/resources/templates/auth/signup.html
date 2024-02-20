@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Registration</title>
+    <style>
+        /* Centering the form on the screen */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensure full viewport height */
+            margin: 0; /* Remove default body margin */
+            background-color: #f0f0f0; /* Set background color */
+        }
+        /* Styling for the form container */
+        .signup-form {
+            width: 300px; /* Adjust width as needed */
+            padding: 20px;
+            background-color: #ffffff; /* Set background color */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styling for input fields */
+        input[type="email"],
+        input[type="password"],
+        input[type="text"]{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Styling for submit button */
+        .signup-button {
+            width: auto; /* Adjust width as needed */
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: background-color 0.3s; /* Smooth transition effect for background color */
+            background-color: #28a745; /* Green color for signup button */
+            color: #fff; /* White text color */
+            align-self: flex-end; /* Align the button to the right */
+        }
+
+        /* Hover effect for submit button */
+        .signup-button:hover {
+            background-color: #218838; /* Darker green color on hover */
+        }
+
+        /* Styling for error messages */
+        p.error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px; /* Adjust as needed */
+            text-align: right;
+        }
+
+        /* Styling for anchor tag */
+        a {
+            text-decoration: none; /* Remove default underline */
+            color: #007bff; /* Blue color for link */
+            font-size: 14px; /* Adjust font size */
+            /*margin-top: 10px; !* Add space between signup button and link *!*/
+            align-self: end; /* Center the link */
+            transition: color 0.3s; /* Smooth transition effect for color change */
+        }
+
+        /* Hover effect for anchor tag */
+        a:hover {
+            color: #0056b3; /* Darker blue color on hover */
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" class="signup-form">
+    <label>
+        <input type="text" name="userFullName" placeholder="Full Name">
+    </label>
+    <label>
+        <input type="email" name="userEmailId" th:style="${emailIdAlreadyExistStyle}" placeholder="Enter your email">
+    </label>
+    <p class="error-message" th:text="${emailIdAlreadyExist}"></p>
+
+    <label>
+        <input type="password" name="userPassword" placeholder="Password">
+    </label>
+    <label>
+        <input type="text" name="userRole" value="Student" disabled>
+    </label>
+    <a href="loginPage">
+        <sup>Already have an account?</sup>
+    </a>
+    <input type="submit" value="Sign Up" class="signup-button" formaction="signUp">
+
+</form>
+</body>
+</html>
+
